@@ -66,7 +66,7 @@ private class SimpleRestClientException extends Exception{}
         return response;
     }
 
-    private HttpRequest buildRequest(){
+    protected HttpRequest buildRequest(){
         HttpRequest request = new HttpRequest();
         request.setMethod(this.method.toUpperCase());
         request.setEndpoint(buildEndpoint());
@@ -77,7 +77,7 @@ private class SimpleRestClientException extends Exception{}
         return request;
     }
 
-    private String buildEndpoint(){
+    protected String buildEndpoint(){
         this.endpoint = (this.namedCredential != null ? 'callout:'+namedCredential : '') + this.endpoint;
         if(String.isBlank(this.endpoint)) throw new SimpleRestClientException('The endpoint can\'t be blank');
         return this.endpoint;
